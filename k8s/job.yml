@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo-job
+  labels:
+    app: echo-job
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: echo-job
+  template:
+    metadata:
+      labels:
+        app: echo-job
+    spec:
+      containers:
+      - name: echo-job
+        image: cluster-echo-job:latest
+        imagePullPolicy: Never #don't try to pull from public hub 
+        ports:
+        - containerPort: 8000
+
